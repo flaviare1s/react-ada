@@ -1,10 +1,15 @@
-function App() {
+import React from "react";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
-  return (
-    <>
-    <h1>Hello World!</h1>
-    </>
-  )
+class App extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+      </div>
+    )
+  }
 }
 
-export default App
+export default App;
