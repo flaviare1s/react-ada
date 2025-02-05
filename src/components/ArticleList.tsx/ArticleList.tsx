@@ -2,6 +2,7 @@ import "./styles.css";
 import { Article } from "../Article/Article";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 interface ArticleData {
   id: number;
@@ -25,20 +26,30 @@ export const ArticleList = () => {
     }
     loadNews();
   }, []);
- 
-    return (
-      <section id="articles">
-        { news.map((article) => {
-          return (
+
+  return (
+    <section id="articles">
+      {news.length === 0 ? (
+        <div style={{ height: "100vh", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="white"
+            ariaLabel="loading"
+          />
+        </div>
+      ) : (
+        news.map((article) => (
           <Article
-          key={article.id}
+            key={article.id}
             title={article.title}
             provider={article.news_site}
             description={article.summary}
             image={article.image_url}
           />
-          )
-        })}
-      </section>
-    );
-  }
+        ))
+      )}
+    </section>
+  );
+};
