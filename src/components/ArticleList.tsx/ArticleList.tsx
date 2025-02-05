@@ -3,8 +3,16 @@ import { Article } from "../Article/Article";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface ArticleData {
+  id: number;
+  title: string;
+  news_site: string;
+  summary: string;
+  image_url: string;
+}
+
 export const ArticleList = () => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<ArticleData[]>([]);
 
   useEffect(() => {
     async function loadNews() {
